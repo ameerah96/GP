@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  
+  
+  
+      <link rel="stylesheet" href="login.css">
+
+  
+</head>
+
+<body>
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <h4> Login Information </h4>
+  <input name="username" class="username" type="text" placeholder="Enter Username"/>
+  <input name="pass" class="pass" type="password" placeholder="Enter Password"/>
+  <li><a href="#">Forgot your password?</a></li>
+  <input class="button" type="submit" name="login"/>
+</form>
+<?php
+//session_start();
+// Store Session Data
+
+
+
+
+if (isset($_POST['login']))  {
+ 
+if (empty($_POST['username']) || empty($_POST['pass'])) {
+echo "<p class='er'>Username or Password is invalid</p>";
+}
+
+
+else
+{ 
+
+// Define $username and $password
+$username=$_POST['username'];
+$pass=$_POST['pass'];
+
+// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+if(!($connection = mysql_connect("localhost", "root","", "e_academic_advisor")))
+  die("could not connect to database");
+
+
+// Selecting Database
+if(!($db = mysql_select_db("e_academic_advisor", $connection)))
+  echo "could not ewxecute query";
+$data="SELECT GPA from student WHERE password='$pass' AND ID='$username'";
+
+// SQL query to fetch information of registerd users and finds user match.
+$query = mysql_query($data, $connection);
+$rows = mysql_num_rows($query);
+
+//foreach($row as $key=> $val){
+//$lastname=$row[0];
+ //$row[1];
+//$GPA= $row[1];
+//print $imgg;
+//print $row['image'];
+
+}
+if ($rows == 1) {
+//$_SESSION['user']=$username; // Initializing Session
+//$_SESSION['ID']= $GPA;
+
+
+
+header("location: empty.php"); // Redirecting To Other Page
+} 
+
+mysql_close($connection); // Closing Connection
+
+
+}
+
+?>
+  
+</body>
+
+</html>
