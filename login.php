@@ -34,76 +34,68 @@ session_start();
 
 <?php
 require('db.php');
-
 if (isset($_POST['login'])) {
       $user_type="";
      
-      if (empty($_POST['username']) || empty($_POST['pass'])) {
-        echo "<p class='er'>Username or Password is invalid</p>";
+      if (empty($_POST['username']) || empty($_POST['pass']) || empty($_POST['type_of_user']) ) {
+        echo "<p class='er'>All fields are required</p>";
                   } 
-     
-                  if(empty($_POST['type_of_user'])){
-echo "<P class='er'>please select user type</p>";  
-}                                                    
-                  else{
-                    $user_type= $_POST['type_of_user'];
-                     if($user_type=="Student"){                
+                                                       
+else {       
 // Define $username and $password
 $username=$_POST['username'];
 $pass=$_POST['pass'];
 $username= mysqli_real_escape_string($link, $username);
 $pass= mysqli_real_escape_string($link, $pass);
+
+      $user_type= $_POST['type_of_user'];
+      if($user_type=="Student"){                
 // Selecting Database
 $data="SELECT * from student WHERE ID='$username'";
 //if(password_verify($password, $hashed_password)) {} 
 $query = mysqli_query($link, $data);
-//$rows=0;
 $rows = mysqli_num_rows($query);
 $row = mysqli_fetch_assoc($query);
-if ($rows == 1  && (password_verify($pass, $row['password'])) ) {
+if ($rows == 1  && password_verify($pass, $row['password']) ) {
                             
                  $_SESSION['username']=$username; // Initializing Session
                  $_SESSION['auth']='true';
                 $_SESSION['last_time']=time(); 
 header("location: profile.php"); // Redirecting to another page
+            }//if rows
+            else { 
+              echo "<p class='er'>Username or Password is invalid</p>";
             }
-            else echo "<p class='er'>Username or Password is invalid</p>";
 
-}
-                     //else second user
-}//user if
+}//student
+                     // second user
 //if
 if($user_type=="Advisor"){                
 // Second User, Advisor
-// Define $username and $password
-$username=$_POST['username'];
-$pass=$_POST['pass'];
-$username= mysqli_real_escape_string($link, $username);
-$pass= mysqli_real_escape_string($link, $pass);
-
 // Selecting Database
 $data="SELECT * from advisor WHERE ID='$username'";
 $query = mysqli_query($link, $data);
 //$rows=0;
-
 $rows = mysqli_num_rows($query);
 $row = mysqli_fetch_assoc($query);
-if ($rows == 1  && (password_verify($pass, $row['password'])) ) {
-             $rows = mysqli_fetch_assoc($query);
+if ($rows == 1  && password_verify($pass, $row['password']) ) {
                $_SESSION['username']=$username; // Initializing Session
                 $_SESSION['auth']='true';
                 $_SESSION['last_time']=time();    //setting a timeout for the session
                 header("location: profile.php"); // Redirecting to another page
-            }                else echo "<p class='er'>Username or Password is invalid</p>";
+            }       
+           else echo "<p class='er'>Username or Password is invalid</p>";
 
          
-}
-}   
+}//advisor
+
+}//else 
+}   //big if
        
 mysqli_close($link); // Closing Connection
 
 ?>  
-<div class="copyright">
+
 
 </body>
 </html>
