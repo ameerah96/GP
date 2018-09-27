@@ -51,17 +51,16 @@ $pass= mysqli_real_escape_string($link, htmlspecialchars($pass));
       $user_type= $_POST['type_of_user'];
       if($user_type=="Student"){                
 // Selecting Database
-$data="SELECT * from student WHERE ID='$username' and password='$pass'";
+$data="SELECT * from student WHERE ID='$username'";
 //if(password_verify($password, $hashed_password)) {} 
 $query = mysqli_query($link, $data);
 
 $rows = mysqli_num_rows($query);
 $row = mysqli_fetch_assoc($query);
-if ($rows == 1 ){
+if ($rows == 1  && password_verify($pass, $row['password'])){
 // && password_verify($pass, $row['password']) ) {
                             
                  $_SESSION['username']=$username; // Initializing Session
-                 $SESSION['ID']=$row['ID'];
                  $_SESSION['auth']='true';
                 $_SESSION['last_time']=time(); 
 header("location: student_home_page.php"); // Redirecting to another page
@@ -81,7 +80,7 @@ $query = mysqli_query($link, $data);
 //$rows=0;
 $rows = mysqli_num_rows($query);
 $row = mysqli_fetch_assoc($query);
-if ($rows == 1 ) 
+if ($rows == 1 && password_verify($pass, $row['password'])) 
 //&& password_verify($pass, $row['password']) 
 {
                $_SESSION['username']=$username; // Initializing Session
