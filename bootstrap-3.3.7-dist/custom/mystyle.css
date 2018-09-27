@@ -1,0 +1,14 @@
+div.jumbotron{
+width=150px;
+}
+div.carousel slide{width=90%; 
+height=90% ;
+background-color=blue;
+ padding-left= 100%; }
+ .carousel .item {
+  height: 000px;
+  background-color: red;
+}
+body {
+	background-color: #e6ffee;
+}

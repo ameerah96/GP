@@ -1,0 +1,117 @@
+body, h1 , h2 , h3 , h4, h5, h6, div , nav{
+	font-family: themixarab;
+}
+.navbar-inverse {
+    background-color: #e9b813;
+    border-color: #e9b813;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #e9b813;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+}
+.navbar-inverse .navbar-brand {
+    color: #b20839;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #b20839;
+}
+.navbar-default .navbar-toggle {
+	border-color: #b20839;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #b20839;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #b20839;
+}
+.dropdown-menu {
+    background-color: #e9b813;
+}
+.dropdown-menu > li > a {
+    color: #fff;
+}	
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: #b20839;
+}
+.btn-success {
+    color: #fff;
+    background-color: #b20839;
+    border-color: #b20839;
+}
+
+.btn-success:active , .btn-success.active, .btn-success:hover , 
+.btn-success.hover, .btn-success:focus ,.btn-success.focus , 
+.btn-success:active:hover,.btn-success.active:hover {
+    color: #fff;
+    background-color: rgba(178, 8, 57, 0.73);
+    border-color: rgba(178, 8, 57, 0.73);;
+}
+.btn-primary{
+	color: #fff;
+    background-color: #e9b813;
+    border-color: #e9b813;
+}
+.btn-primary:active , .btn-primary.active, .btn-primary:hover , 
+.btn-primary.hover, .btn-primary:focus ,.btn-primary.focus , 
+.btn-primary:active:hover,.btn-primary.active:hover {
+    color: #fff;
+    background-color: rgba(233, 184, 19, 0.82);
+    border-color: rgba(233, 184, 19, 0.72);
+}
+.blog-post-meta {
+    font-size: 15px;
+}	
+h2 , h4{
+	color: #b10839;	
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #b20839;
+}
+.panel-footer {
+    padding: 17px 15px;
+}	
+@media (min-width: 768px) {
+	.slider-caption{
+		color: #f68121; 
+		background-color: rgba(255, 255, 255, 0.68); 
+		margin: 131px; 
+		padding: 10px; 
+		border-radius: 10px;
+	}
+}
+@media (min-width: 400px)  {
+	.slider-caption{
+		color: #f68121;   
+		background-color: rgba(255, 255, 255, 0.68);
+		margin: 84px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+}
+@media  screen and (min-width: 360px)  {
+	.slider-caption{
+		color: #f68121;   
+		background-color: rgba(255, 255, 255, 0.68);
+		margin: 48px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	}@media  screen and (min-width:320px)  {
+	.slider-caption{
+		color: #f68121;   
+		background-color: rgba(255, 255, 255, 0.68);
+		margin: 25px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+}
+
+a {
+    color: #e9b813;
+}	

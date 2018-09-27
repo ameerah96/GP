@@ -1,17 +1,34 @@
 <?php
+require('db.php');
+session_start();// Starting Session
+if(!$_SESSION['auth'])
+     header("location:login.php");
+ else{
+ 	//setting a timeout for the session
+ 	     if(time()- $_SESSION['last_time'] > 180)
+ 		  header('location:logout.php');
+ 	     else
+ 	     $_SESSION['last_time']=time();
+
+		//echo $_SESSION['username'];
+ 	/*
+	function forcelogin(){
+if(isset($_SESSION['username']) ){
+		//echo $_SESSION['username'];
+	}
+else header("Location: / login.php");} */
+//$username=$_SESSION['username'];
+// Establishing Connection with Server by passing server_name, user_id and password as a parameter//
+require('db.php');
 //in this page i get information for (student_home_page, drop_semsetr_form)
-require"dbConnect.php";	
 $student_info=array();
 
-if (!session_id()){
-session_start();}
-
-$ID=$_SESSION['email'];
+$ID=$_SESSION['username'];
 
 		$sql = "SELECT * FROM student WHERE student.ID='$ID'"; 
-		$query = $conn->query($sql);
+		$query = $link->query($sql);
 		if(!$query){ 
-			die('Query Failed' . mysqli_error($conn));
+			die('Query Failed' . mysqli_error($link));
 			}else{
 			if($row = $query->fetch_assoc()){
 			
@@ -27,10 +44,11 @@ $ID=$_SESSION['email'];
 		      array_push($student_info,$GPA);
 $Avdisor_student=$row['ID_advisor'];
 		        }
+		    }
 						$sql1 = "SELECT * FROM advisor WHERE advisor.ID='$Avdisor_student'"; 
-                       $query1 = $conn->query($sql1);
+                       $query1 = $link->query($sql1);
                    if(!$query1){ 
-		         	die('Query Failed' . mysqli_error($conn));
+		         	die('Query Failed' . mysqli_error($link));
 			       }
 			        else{
 			               if($row1 = $query1->fetch_assoc()){
@@ -43,9 +61,9 @@ $Avdisor_student=$row['ID_advisor'];
 			}
 			
 			$sql2 = "SELECT * FROM plan WHERE plan.ID_student='$ID'"; 
-                       $query2 = $conn->query($sql2);
+                       $query2 = $link->query($sql2);
                    if(!$query2){ 
-		         	die('Query Failed' . mysqli_error($conn));
+		         	die('Query Failed' . mysqli_error($link));
 			       }
 			        else{
 			               if($row2 = $query2->fetch_assoc()){
@@ -58,7 +76,7 @@ $Avdisor_student=$row['ID_advisor'];
 				$student_info_json= json_encode($student_info);
 				echo $student_info_json;
 				
-			}
+			}//big else
 
 		
 	
