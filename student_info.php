@@ -5,11 +5,7 @@ $student_info=array();
 
 if (!session_id()){
 session_start();}
-if (!$_SESSION['logon']){ 
-echo"gg";
-    die();
-}
-else{
+
 $ID=$_SESSION['email'];
 
 		$sql = "SELECT * FROM student WHERE student.ID='$ID'"; 
@@ -63,7 +59,7 @@ $Avdisor_student=$row['ID_advisor'];
 				echo $student_info_json;
 				
 			}
-		}
+
 		
 	
 ?>
